@@ -1,0 +1,8 @@
+name: happymatches-mobile
+root: ~/Workspace/happymatches/mobile
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - ios: cordova run ios
+  - android: cordova run android

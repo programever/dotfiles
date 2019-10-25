@@ -1,0 +1,8 @@
+name: tipsay-api
+root: ~/Workspace/tipsay/api
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - test: rspec
+  - server: rails s -p 3001

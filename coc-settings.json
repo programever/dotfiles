@@ -1,0 +1,24 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [ "elm", "javascript", "json" ],
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.refreshAfterSave": false,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "~~> ",
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": [ "elm" ],
+      "rootPatterns": [ "elm.json" ],
+      "initializationOptions": {
+        "elmPath": "elm",
+        "elmFormatPath": "elm-format",
+        "elmTestPath": "elm-test",
+        "elmAnalyseTrigger": "change"
+      }
+    }
+  },
+  "codeLens.enable": true,
+  "snippets.ultisnips.directories": [
+    "/Users/iker/Workspace/dotfiles/snippets"
+  ]
+}
