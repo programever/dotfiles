@@ -56,3 +56,7 @@ export PATH=./node_modules/.bin:${PATH}
 
 # TMUX
 alias mux="tmuxinator"
+
+# XCODE
+alias symbolicatecrash="/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash"
+export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"

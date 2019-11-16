@@ -1,5 +1,6 @@
 name: happymatches-admin
 root: ~/Workspace/happymatches/admin
+pre_window: nvm use
 
 windows:
   - editor: nvim
