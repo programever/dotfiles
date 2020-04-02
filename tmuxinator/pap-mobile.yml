@@ -8,3 +8,4 @@ windows:
   - ios: npm run ios
   - android: npm run android
   - server: npm run start
+  - androidSimulator: (cd ~/Library/Android/sdk/tools && ./emulator -avd Android_8)

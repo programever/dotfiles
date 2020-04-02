@@ -60,3 +60,10 @@ alias mux="tmuxinator"
 # XCODE
 alias symbolicatecrash="/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash"
 export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+
+# ANDROID STUDIO
+export PATH=~/Library/Android/sdk/tools:$PATH
+export PATH=~/Library/Android/sdk/platform-tools:$PATH
+
+# GRADLE
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
