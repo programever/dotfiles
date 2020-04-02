@@ -5,4 +5,4 @@ windows:
   - editor: nvim
   - bash: git fetch --all && git status
   - test: ll
-  - server: ll
+  - server: npm run start

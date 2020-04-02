@@ -5,4 +5,6 @@ windows:
   - editor: nvim
   - bash: git fetch --all && git status && mux start pap-api
   - test: ll
-  - server: ll
+  - ios: npm run ios
+  - android: npm run android
+  - server: npm run start

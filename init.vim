@@ -45,6 +45,10 @@ let g:indentLine_color_term = 254 " Solarized base2 color
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
+" Display tsx file
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
+
 " Nice status bar
 Plug 'vim-airline/vim-airline'
 " Disable all extensions for vim-airline for better performance
