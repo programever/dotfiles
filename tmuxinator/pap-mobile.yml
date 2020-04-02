@@ -1,0 +1,8 @@
+name: pap-mobile
+root: ~/Workspace/pap/mobile
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status && mux start pap-api
+  - test: ll
+  - server: ll
