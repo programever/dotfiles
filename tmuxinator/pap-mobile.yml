@@ -4,8 +4,7 @@ root: ~/Workspace/pap/mobile
 windows:
   - editor: nvim
   - bash: git fetch --all && git status && mux start pap-api
-  - test: ll
-  - ios: npm run ios
-  - android: npm run android
   - server: npm run start
-  - androidSimulator: (cd ~/Library/Android/sdk/tools && ./emulator -avd Android_8)
+  - lint: npm run lint:watch
+  - ios: npm run ios && npm run android
+  - simulator: (cd ~/Library/Android/sdk/tools && ./emulator -avd Android_8)
