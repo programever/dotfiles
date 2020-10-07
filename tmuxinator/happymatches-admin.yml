@@ -6,4 +6,4 @@ windows:
   - editor: nvim
   - bash: git fetch --all && git status
   - test: elm-app test
-  - server: yarn start
+  - server: npm run start

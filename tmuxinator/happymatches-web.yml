@@ -5,5 +5,4 @@ pre_window: nvm use
 windows:
   - editor: nvim
   - bash: git fetch --all && git status && mux start happymatches-api && mux start happymatches-core
-  - test: yarn test
-  - server: yarn start
+  - server: npm run start
