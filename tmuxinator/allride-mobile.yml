@@ -8,4 +8,5 @@ windows:
   - bash: git fetch --all && git status
   - ios: print -S "npx react-native run-ios"
   - android: print -S "npx react-native run-android"
-  - server: print -S "npm run lint:watch"
+  - server: npm run start
+  - lint: npm run lint:watch
