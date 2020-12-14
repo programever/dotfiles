@@ -1,6 +1,6 @@
 " Start declaring all Plugins
 autocmd!
-let g:loaded_python_provider = 1 " Turn off python2
+let g:loaded_python_provider = 0 " Turn off python2
 call plug#begin('~/.nvim/plugged')
 
 " Use solarized color scheme
