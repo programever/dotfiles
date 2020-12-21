@@ -10,3 +10,4 @@ windows:
   - android: print -S "npx react-native run-android"
   - server: npm run start
   - lint: npm run lint:watch
+  - simulator: print -S "/Users/iker/Library/Android/sdk/emulator/emulator -avd Android_10"

@@ -1,0 +1,8 @@
+name: allride-api
+root: ~/Workspace/allride/api
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server: print -S "npm run start"
