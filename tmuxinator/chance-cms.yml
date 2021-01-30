@@ -1,0 +1,8 @@
+name: chance-cms
+root: ~/Workspace/nhan/chance/cms
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - serverRails: rails s -p 8000
+  - serverReact: ./bin/webpack-dev-server

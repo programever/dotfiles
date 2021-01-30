@@ -1,0 +1,7 @@
+name: chance-web
+root: ~/Workspace/nhan/chance/web
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status && mux start chance-cms
+  - server: yarn dev
