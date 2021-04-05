@@ -1,0 +1,7 @@
+name: news
+root: ~/Workspace/nhan/news
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server: npm run db:up && npm run start

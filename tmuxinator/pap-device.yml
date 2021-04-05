@@ -1,9 +1,0 @@
-name: pap-devices
-root: ~/Workspace/pap/mobile
-
-windows:
-  - lint: npm run lint:watch
-  - ios: npm run ios
-  - android: npm run android
-  - server: npm run start
-  - androidSimulator: (cd ~/Library/Android/sdk/tools && ./emulator -avd Android_8)

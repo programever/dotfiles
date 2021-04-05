@@ -1,8 +1,8 @@
-name: pap-api
-root: ~/Workspace/pap/api
+name: farm
+root: ~/Workspace/esop/web
 
 windows:
   - editor: nvim
   - bash: git fetch --all && git status
-  - test: ll
   - server: npm run start
+  - lint: npm run lint:watch

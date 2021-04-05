@@ -1,5 +1,12 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": [ "elm", "javascript", "json", "fsharp", "typescript", "typescriptreact" ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "elm",
+    "javascript",
+    "json",
+    "fsharp",
+    "typescript",
+    "typescriptreact"
+  ],
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic.refreshAfterSave": false,
   "diagnostic.virtualText": true,
@@ -7,8 +14,8 @@
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
-      "filetypes": [ "elm" ],
-      "rootPatterns": [ "elm.json" ],
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
       "initializationOptions": {
         "elmPath": "elm",
         "elmFormatPath": "elm-format",
@@ -18,7 +25,6 @@
     }
   },
   "codeLens.enable": true,
-  "snippets.ultisnips.directories": [
-    "/Users/iker/Workspace/dotfiles/snippets"
-  ]
+  "snippets.ultisnips.directories": ["/Users/iker/Workspace/dotfiles/snippets"],
+  "javascript.suggestionActions.enabled": false
 }

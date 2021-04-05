@@ -1,8 +1,0 @@
-name: tipsay-cms
-root: ~/Workspace/tipsay/cms
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - test: rspec
-  - server: rails s
