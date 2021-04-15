@@ -6,3 +6,4 @@ windows:
   - bash: git fetch --all && git status
   - server: npm run start
   - user-server: (cd ~/Workspace/nhan/farm/services/user && yarn start)
+  - user-gateway: (cd ~/Workspace/nhan/farm/services/user.gateway && yarn start)
