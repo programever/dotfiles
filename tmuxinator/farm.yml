@@ -5,5 +5,7 @@ windows:
   - editor: nvim
   - bash: git fetch --all && git status
   - server: npm run start
+  - wallet-server: (cd ~/Workspace/nhan/farm/services/wallet && yarn start)
   - user-server: (cd ~/Workspace/nhan/farm/services/user && yarn start)
   - user-gateway: (cd ~/Workspace/nhan/farm/services/user.gateway && yarn start)
+  - configuration: (cd ~/Workspace/nhan/farm/services/configuration && yarn start)
