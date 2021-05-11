@@ -9,3 +9,4 @@ windows:
   - user-server: (cd ~/Workspace/nhan/farm/services/user && yarn start)
   - user-gateway: (cd ~/Workspace/nhan/farm/services/user.gateway && yarn start)
   - configuration: (cd ~/Workspace/nhan/farm/services/configuration && yarn start)
+  - grpc-3rd: (cd ~/Workspace/nhan/farm/services/server.for.3rd && yarn start)
