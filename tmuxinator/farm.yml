@@ -5,8 +5,9 @@ windows:
   - editor: nvim
   - bash: git fetch --all && git status
   - server: npm run start
-  - wallet-server: (cd ~/Workspace/nhan/farm/services/wallet && yarn start)
-  - user-server: (cd ~/Workspace/nhan/farm/services/user && yarn start)
-  - user-gateway: (cd ~/Workspace/nhan/farm/services/user.gateway && yarn start)
+  - user: (cd ~/Workspace/nhan/farm/services/user && yarn start)
+  - wallet: (cd ~/Workspace/nhan/farm/services/wallet && yarn start)
+  - notification: (cd ~/Workspace/nhan/farm/services/notification && yarn start)
+  - gateway: (cd ~/Workspace/nhan/farm/services/user.gateway && yarn start)
   - configuration: (cd ~/Workspace/nhan/farm/services/configuration && yarn start)
   - grpc-3rd: (cd ~/Workspace/nhan/farm/services/server.for.3rd && yarn start)
