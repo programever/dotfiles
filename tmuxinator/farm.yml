@@ -1,13 +1,13 @@
 name: farm
-root: ~/Workspace/nhan/farm/services/farm
+root: ~/Workspace/nhan/farm
 
 windows:
   - editor: nvim
   - bash: git fetch --all && git status
   - server: npm run start
-  - user: (cd ~/Workspace/nhan/farm/services/user && yarn install && yarn start)
-  - wallet: (cd ~/Workspace/nhan/farm/services/wallet && yarn install && yarn start)
-  - notification: (cd ~/Workspace/nhan/farm/services/notification && yarn install && yarn start)
-  - gateway: (cd ~/Workspace/nhan/farm/services/user.gateway && yarn install && yarn start)
-  - configuration: (cd ~/Workspace/nhan/farm/services/configuration && yarn install && yarn start)
-  - grpc-3rd: (cd ~/Workspace/nhan/farm/services/server.for.3rd && yarn install && yarn start)
+  - user: (cd ~/Workspace/nhan/omatech/services/user && yarn install && yarn start)
+  - wallet: (cd ~/Workspace/nhan/omatech/services/wallet && yarn install && yarn start)
+  - notification: (cd ~/Workspace/nhan/omatech/services/notification && yarn install && yarn start)
+  - gateway: (cd ~/Workspace/nhan/omatech/services/user.gateway && yarn install && yarn start)
+  - configuration: (cd ~/Workspace/nhan/omatech/services/configuration && yarn install && yarn start)
+  - grpc-3rd: (cd ~/Workspace/nhan/omatech/services/server.for.3rd && yarn install && yarn start)
