@@ -1,5 +1,6 @@
 name: farm
 root: ~/Workspace/nhan/farm
+pre_window: nvm use
 
 windows:
   - editor: nvim

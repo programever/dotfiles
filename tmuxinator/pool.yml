@@ -1,5 +1,6 @@
 name: pool
 root: ~/Workspace/nhan/pool
+pre_window: nvm use
 
 windows:
   - editor: nvim
