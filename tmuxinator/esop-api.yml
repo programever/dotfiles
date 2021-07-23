@@ -6,4 +6,5 @@ windows:
   - editor: nvim
   - bash: git fetch --all && git status
   - python: ll
+  - lint: npm run lint:watch
   - server: npm run start
