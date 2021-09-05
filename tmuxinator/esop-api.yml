@@ -5,6 +5,10 @@ pre_window: nvm use
 windows:
   - editor: nvim
   - bash: git fetch --all && git status
-  - python: ll
+  - python:
+      layout: tiled
+      panes:
+        - test: print -S "./scripts/python/test.sh"
+        - server: print -S "./scripts/python/start.sh"
   - lint: npm run lint:watch
   - server: npm run start

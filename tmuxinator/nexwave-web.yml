@@ -3,7 +3,7 @@ root: ~/Workspace/nexwave/web
 pre_window: nvm use
 
 windows:
-  - editor: nvim
+  - editor: nvm use 14 && nvim
   - bash: git fetch --all && git status && mux start nexwave-api
   - test: yarn test
   - server: yarn start

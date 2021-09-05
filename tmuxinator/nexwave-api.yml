@@ -1,5 +1,6 @@
 name: nexwave-api
 root: ~/Workspace/nexwave/api
+pre_window: nvm use 14
 
 windows:
   - editor: nvim
