@@ -1,0 +1,10 @@
+name: ao-mobile
+root: ~/Workspace/ao/mobile
+
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - lint: print -S "npm run lint:watch"
+  - server: print -S "npm run start"
