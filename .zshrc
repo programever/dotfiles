@@ -5,6 +5,9 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 
+# PG_DUMP
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
