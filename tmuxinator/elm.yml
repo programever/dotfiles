@@ -1,0 +1,8 @@
+name: elm
+root: ~/Workspace/elm
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server: npm run test
