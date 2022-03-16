@@ -1,0 +1,10 @@
+name: nodeservice-api
+root: ~/Workspace/nodeservice/api
+pre_window: nvm use
+
+windows:
+  - editor: nvm use 14 && nvim
+  - bash: git fetch --all && git status
+  - test: npm run test
+  - lint: npm run lint
+  - server: npm run start

@@ -1,0 +1,8 @@
+name: nodeservice-web
+root: ~/Workspace/nodeservice/web
+pre_window: nvm use
+
+windows:
+  - editor: nvm use 14 && nvim
+  - bash: git fetch --all && git status
+  - server: npm run start
