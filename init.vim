@@ -30,12 +30,6 @@ Plug 'tpope/vim-surround'
 " dot operator repeat for vim-commentary/vim-surrond
 Plug 'tpope/vim-repeat'
 
-" Automatically close your brackets/etc
-Plug 'jiangmiao/auto-pairs'
-" Add back closing tag for jiangmiao/auto-pairs
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutBackInsert = '<C-b>'
-
 " Displays a | for indentation
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '⁞'
@@ -65,12 +59,13 @@ let NERDTreeIgnore=['node_modules', '.git$', '\.swp$', 'rethinkdb_data', '\.DS_S
 " Autocomplete with Language Server Support
 " Requirements:
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = [ 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-html', 'coc-snippets', 'coc-fsharp', 'coc-tsserver' ]
+let g:coc_global_extensions = [ 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-html', 'coc-snippets', 'coc-fsharp', 'coc-tsserver', 'coc-rust-analyzer' ]
 nmap <silent> gk <Plug>(coc-diagnostic-prev)
 nmap <silent> gj <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gf <Plug>(coc-diagnostic-info)
+nmap ge <Plug>(coc-codelens-action)
 nmap gn <Plug>(coc-rename)
 nmap ga :CocList --normal diagnostics<CR>
 nmap <silent> gh :call <SID>show_documentation()<CR>
@@ -106,8 +101,7 @@ call plug#end()
 " Color scheme
 set background=light
 colorscheme NeoSolarized
-highlight CocErrorHighlight ctermfg=Red guifg=White
-highlight CocWarningHighlight ctermfg=Brown guifg=White
+hi CocUnusedHighlight ctermfg=Red
 
 set updatetime=300
 set signcolumn=yes

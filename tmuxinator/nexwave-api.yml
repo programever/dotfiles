@@ -1,9 +1,0 @@
-name: nexwave-api
-root: ~/Workspace/nexwave/api
-pre_window: nvm use 14
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - test: ll
-  - server: dotnet watch run

@@ -1,8 +1,9 @@
-name: nodeservice-web
-root: ~/Workspace/nodeservice/web
+name: blacknft-api
+root: ~/Workspace/blacknft/api
 pre_window: nvm use
 
 windows:
-  - editor: nvm use 14 && nvim
+  - editor: nvim
   - bash: git fetch --all && git status
+  - lint: npm run lint:watch
   - server: npm run start

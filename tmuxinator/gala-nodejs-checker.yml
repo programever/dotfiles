@@ -1,6 +1,5 @@
-name: gala-api
-root: ~/Workspace/gala/api
-pre_window: nvm use
+name: gala-nodejs-checker
+root: ~/Workspace/gala/nodejs-checker
 
 windows:
   - editor: nvim

@@ -1,8 +1,0 @@
-name: svgtoelm
-root: ~/Workspace/svgtoelm
-pre_window: nvm use
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - server: npm run start

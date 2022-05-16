@@ -1,6 +1,5 @@
-name: happymatches-api
-root: ~/Workspace/happymatches/api
-pre_window: nvm use
+name: faq-admin
+root: ~/Workspace/faq/admin
 
 windows:
   - editor: nvim
