@@ -5,6 +5,7 @@
     "json",
     "fsharp",
     "rust",
+    "sql",
     "typescript",
     "typescriptreact"
   ],
@@ -27,5 +28,6 @@
   },
   "codeLens.enable": true,
   "snippets.ultisnips.directories": ["/Users/iker/Workspace/dotfiles/snippets"],
-  "javascript.suggestionActions.enabled": false
+  "javascript.suggestionActions.enabled": false,
+  "sql.database": "postgresql"
 }

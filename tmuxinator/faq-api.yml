@@ -1,9 +1,9 @@
 name: faq-api
 root: ~/Workspace/faq/api
-pre_window: nvm use
 
 windows:
   - editor: nvim
   - bash: git fetch --all && git status
-  - lint: npm run lint
-  - server: npm run start
+  - lint: print -S "make lint-watch"
+  - test: print -S "make test-watch"
+  - api: print -S "make server"
