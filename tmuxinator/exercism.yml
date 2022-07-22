@@ -1,0 +1,6 @@
+name: exercism
+root: ~/Exercism/haskell
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all
