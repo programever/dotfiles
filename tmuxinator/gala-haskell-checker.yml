@@ -1,5 +1,5 @@
-name: faq-api-haskell
-root: ~/Workspace/faq/api-haskell
+name: gala-haskell-checker
+root: ~/Workspace/gala/haskell-checker
 
 windows:
   - editor: nvim

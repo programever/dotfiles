@@ -60,27 +60,31 @@ let NERDTreeIgnore=['node_modules', '.git$', '\.swp$', 'rethinkdb_data', '\.DS_S
 " Requirements:
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [ 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-html', 'coc-snippets', 'coc-fsharp', 'coc-tsserver', 'coc-rust-analyzer', 'coc-sql' ]
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap          gn <Plug>(coc-rename)
+nmap <silent> gh :call ShowDocumentation()<CR>
+nmap          go <Plug>(coc-float-jump)
+nmap          gl <Plug>(coc-codelens-action)
+nmap          gf <Plug>(coc-fix-current)
+nmap          ga <Plug>(coc-codeaction-selected)<CR>
+nmap          gA <Plug>(coc-codeaction)
 nmap <silent> gk <Plug>(coc-diagnostic-prev)
 nmap <silent> gj <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gf <Plug>(coc-diagnostic-info)
-nmap ge <Plug>(coc-codelens-action)
-nmap gn <Plug>(coc-rename)
-nmap ga :CocList --normal diagnostics<CR>
-nmap <silent> gh :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    call feedkeys('K', 'in')
   endif
 endfunction
+
 " Map navigation & Enter in insert mode for auto-completion
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" let $NVIM_COC_LOG_LEVEL = 'debug'
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap         <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+inoremap         <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " Syntax highlighting for elm
 Plug 'andys8/vim-elm-syntax'
@@ -169,6 +173,9 @@ nnoremap <tab><tab> <c-w><c-w>
 " Insert a line break above
 nmap K 0i<cr><esc>
 
+" Toggle relative line number
+nnoremap <silent> <C-n> :set relativenumber!<cr>
+
 " *****************************************
 "     Leader Mappings
 " *****************************************
@@ -199,3 +206,4 @@ map <Leader>r :reg<CR>
 
 " Yank the whole page
 map <Leader>y mcggVGy`c
+

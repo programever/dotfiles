@@ -12,6 +12,14 @@
     "lhs",
     "haskell"
   ],
+  "coc.preferences.rootPatterns": [
+    ".git",
+    "elm.json",
+    "Cargo.toml",
+    "*.cabal",
+    "stack.yaml",
+    "package.json"
+  ],
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic.refreshAfterSave": false,
   "diagnostic.virtualText": true,
@@ -31,14 +39,8 @@
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "filetypes": ["hs", "lhs", "haskell"],
-      "rootPatterns": [
-        ".stack.yaml",
-        ".hie-bios",
-        "BUILD.bazel",
-        "cabal.config",
-        "package.yaml"
-      ],
-      "args": ["--lsp"]
+      "rootPatterns": ["*.cabal", "stack.yaml"],
+      "args": ["--lsp", "-j 6"]
     }
   },
   "codeLens.enable": true,
