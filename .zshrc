@@ -67,6 +67,7 @@ export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 # ANDROID STUDIO
 export PATH=~/Library/Android/sdk/tools:$PATH
 export PATH=~/Library/Android/sdk/platform-tools:$PATH
+export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/Contents/Home
 
 # GRADLE
 export PATH="/usr/local/opt/openjdk/bin:$PATH"

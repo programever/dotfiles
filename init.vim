@@ -59,7 +59,7 @@ let NERDTreeIgnore=['node_modules', '.git$', '\.swp$', 'rethinkdb_data', '\.DS_S
 " Autocomplete with Language Server Support
 " Requirements:
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = [ 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-html', 'coc-snippets', 'coc-fsharp', 'coc-tsserver', 'coc-rust-analyzer', 'coc-sql' ]
+let g:coc_global_extensions = [ 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-html', 'coc-snippets', 'coc-fsharp', 'coc-tsserver', 'coc-rust-analyzer', 'coc-sql', 'coc-sh', 'coc-diagnostic' ]
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -86,6 +86,10 @@ inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap         <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 inoremap         <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
+" Coding shorthands
+inoremap <c-f> ∀
+inoremap <c-l> ->
+
 " Syntax highlighting for elm
 Plug 'andys8/vim-elm-syntax'
 
@@ -94,6 +98,12 @@ Plug 'kongo2002/fsharp-vim'
 
 " firestore.rules Syntax highlight
 Plug 'delphinus/vim-firestore'
+
+" Syntax highlighting for Purescript
+Plug 'purescript-contrib/purescript-vim'
+
+" Syntax highlighting for Dhall
+Plug 'vmchale/dhall-vim'
 
 " Initialize plugin system
 call plug#end()
@@ -151,6 +161,7 @@ autocmd InsertLeave * set timeoutlen=300 ttimeoutlen=300
 " Set markdown syntax highlight
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.md set wrap linebreak
+autocmd BufNewFile,BufReadPost *.purs set filetype=purescript
 
 " Saves undo into a file and use it across all vim sessions
 set undodir=~/.nvim/undo

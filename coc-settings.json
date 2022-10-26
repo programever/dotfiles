@@ -1,4 +1,5 @@
 {
+  "suggest.noselect": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "elm",
     "javascript",
@@ -8,6 +9,9 @@
     "sql",
     "typescript",
     "typescriptreact",
+    "sh",
+    "dhall",
+    "purescript",
     "hs",
     "lhs",
     "haskell"
@@ -18,12 +22,27 @@
     "Cargo.toml",
     "*.cabal",
     "stack.yaml",
+    "spago.dhall",
     "package.json"
   ],
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic.refreshAfterSave": false,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": "~~> ",
+  // use coc-diagnostic (diagnostic-languageserver) to provide bash formatting
+  // Ref https://github.com/meatwallace/dotfiles/issues/129#issuecomment-560035270
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    "shfmt": {
+      "command": "shfmt",
+      "args": ["-i", "2", "-bn", "-ci", "-sr"]
+    }
+  },
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
@@ -41,9 +60,28 @@
       "filetypes": ["hs", "lhs", "haskell"],
       "rootPatterns": ["*.cabal", "stack.yaml"],
       "args": ["--lsp", "-j 6"]
+    },
+    "purescript": {
+      "command": "purescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["purescript"],
+      "trace.server": "off",
+      "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"],
+      "settings": {
+        "purescript": {
+          "addSpagoSources": true,
+          "addNpmPath": true,
+          "formatter": "purs-tidy"
+        }
+      }
+    },
+    "dhall": {
+      "command": "dhall-lsp-server",
+      "filetypes": ["dhall"]
     }
   },
   "codeLens.enable": true,
+  "codeLens.position": "eol",
   "snippets.ultisnips.directories": ["/Users/iker/Workspace/dotfiles/snippets"],
   "javascript.suggestionActions.enabled": false,
   "sql.database": "postgresql"
