@@ -11,10 +11,8 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+# FNM
+eval "$(fnm env --use-on-cd)"
 
 export CLICOLOR=1
 export LS_COLORS=GxFxCxDxBxegedabagaced

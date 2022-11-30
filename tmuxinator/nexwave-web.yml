@@ -1,7 +1,6 @@
 name: nexwave-web
 root: ~/Workspace/nexwave/web
-
-pre_window: nvm use
+pre_window: fnm use
 
 windows:
   - editor: nvim
