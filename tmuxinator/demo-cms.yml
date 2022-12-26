@@ -1,5 +1,5 @@
-name: token-checker-cms
-root: ~/Workspace/token-checker/cms
+name: demo-cms
+root: ~/Workspace/demo/cms
 
 windows:
   - editor: nvim

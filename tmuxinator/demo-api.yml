@@ -1,8 +1,8 @@
-name: token-checker-cms
-root: ~/Workspace/token-checker/cms
+name: demo-api
+root: ~/Workspace/demo/api
 
 windows:
   - editor: nvim
   - bash: git fetch --all && git status
-  - lint: print -S "npm run lint"
+  - lint: print -S "npm run lint:watch"
   - server: print -S "npm run start"

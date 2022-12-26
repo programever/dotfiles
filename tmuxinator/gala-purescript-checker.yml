@@ -8,3 +8,4 @@ windows:
   - lint: print -S "make lint:watch"
   - test: print -S "make test:watch"
   - api: print -S "make start"
+  - web: print -S "make run-web"
