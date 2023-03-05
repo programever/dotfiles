@@ -1,5 +1,5 @@
 name: gist
-root: ~/Workspace/gist/js
+root: ~/Workspace/gist
 
 windows:
   - editor: nvim
