@@ -1,0 +1,9 @@
+name: big-id-web
+root: ~/Workspace/big-id/web
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - test: print -S "npm run test:watch"
+  - web: print -S "npm start"
+  - api: print -S "npm start api"

@@ -1,9 +1,0 @@
-name: pap-mobile
-root: ~/Workspace/papsg
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - ios: print -S "npx react-native run-ios"
-  - android: print -S "npm run android"
-  - server: print -S "npm run lint:watch"

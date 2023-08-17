@@ -1,5 +1,5 @@
 name: gist
-root: ~/Workspace/gist
+root: ~/Workspace/depreciated/gist
 
 windows:
   - editor: nvim

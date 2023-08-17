@@ -1,9 +1,0 @@
-name: gala-nodejs-checker
-root: ~/Workspace/gala/nodejs-checker
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - lint: print -S "npm run lint:watch"
-  - server: print -S "npm run start"
-

@@ -1,8 +1,0 @@
-name: faq-api-haskell
-root: ~/Workspace/faq/api-haskell
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - server: print -S "stack run"
-  - test: print -S "stack test"

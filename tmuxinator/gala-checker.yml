@@ -1,9 +1,0 @@
-name: gala-checker
-root: ~/Workspace/gala/checker
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - test: print -S "cargo test"
-  - server: print -S "cargo run"
-

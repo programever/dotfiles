@@ -6,10 +6,9 @@ export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 
 # PG_DUMP
-export PATH="/usr/local/opt/libpq/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$HOME/.rvm/bin:$PATH"
 
 # FNM
 eval "$(fnm env --use-on-cd)"
@@ -78,3 +77,7 @@ if [ -f '/Users/iker/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/iker
 
 # ghcup-env
 [ -f "/Users/iker/.ghcup/env" ] && source "/Users/iker/.ghcup/env" 
+
+# Postgresql
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
