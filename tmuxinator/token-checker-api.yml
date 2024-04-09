@@ -1,8 +1,0 @@
-name: token-checker-api
-root: ~/Workspace/token-checker/api
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - lint: print -S "npm run lint:watch"
-  - server: print -S "npm run start"

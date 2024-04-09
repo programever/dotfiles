@@ -1,0 +1,8 @@
+name: big-id-video
+root: ~/Workspace/big-id/video
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - api: print -S "npm start"
+

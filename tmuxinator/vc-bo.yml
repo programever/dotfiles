@@ -1,8 +1,0 @@
-name: vc-c360
-root: ~/Workspace/vc/bo
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - tsc: print -S "npm run tsc"
-  - web: print -S "npm run start"

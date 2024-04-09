@@ -1,5 +1,6 @@
 alias stree='open -a SourceTree ./'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+alias simu='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 
 # PHP
 export PATH="/usr/local/opt/php@7.1/bin:$PATH"

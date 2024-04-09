@@ -105,6 +105,9 @@ Plug 'purescript-contrib/purescript-vim'
 " Syntax highlighting for Dhall
 Plug 'vmchale/dhall-vim'
 
+" Syntax highlighting for MJML
+Plug 'amadeus/vim-mjml'
+
 " Initialize plugin system
 call plug#end()
 

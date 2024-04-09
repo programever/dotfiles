@@ -1,5 +1,5 @@
-name: big-id-web
-root: ~/Workspace/big-id/web
+name: big-id-admin
+root: ~/Workspace/big-id/admin
 
 windows:
   - editor: nvim
