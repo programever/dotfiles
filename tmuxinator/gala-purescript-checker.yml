@@ -1,6 +1,6 @@
 name: gala-purescript-checker
 root: ~/Workspace/gala/purescript-checker/
-pre_window: fnm use
+pre_window: nvm use
 
 windows:
   - editor: nvim

@@ -1,33 +1,21 @@
 alias stree='open -a SourceTree ./'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias simu='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
-
-# PHP
-export PATH="/usr/local/opt/php@7.1/bin:$PATH"
-export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
-
-# PG_DUMP
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/.rvm/bin:$PATH"
-
-# FNM
-eval "$(fnm env --use-on-cd)"
-
-export CLICOLOR=1
-export LS_COLORS=GxFxCxDxBxegedabagaced
-export LC_ALL='en_US.UTF-8'  
-export LANG='en_US.UTF-8'
-export EDITOR='nvim'
 alias ll='ls -al'
 alias ls='ls -GFh'
+alias mux="tmuxinator"
+
+# Use local npm binaries over global npm binaries
+export PATH=./node_modules/.bin:${PATH}
 
 # zsh plugins
 source $HOME/Workspace/dotfiles/antigen.zsh
 
+# zsh auto suggestion
 antigen bundle zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#D7D7D7,underline"
 
+# zsh to display git + env version
 antigen theme denysdovhan/spaceship-prompt
 
 # Various auto-completions in zsh
@@ -35,50 +23,19 @@ antigen theme denysdovhan/spaceship-prompt
 # https://github.com/zsh-users/zsh-completions/tree/master/src
 antigen bundle zsh-users/zsh-completions
 
-# zsh-syntax-highlighting must be the last!
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen apply
-
-# Vim-like key binding
-# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Movement-1
-bindkey '' vi-backward-char # move left
-bindkey '' autosuggest-accept # move right to accept suggestion
-bindkey '' vi-backward-word # move left by a word
-bindkey '' vi-forward-word # move right by a word
-bindkey '' vi-beginning-of-line
-bindkey '' vi-end-of-line
-bindkey '' backward-delete-word
-
-# Load zsh autocomplete
+# zsh autocomplete
 autoload -U compinit && compinit
 
-# Use local npm binaries over global npm binaries
-export PATH=./node_modules/.bin:${PATH}
+# zsh-syntax-highlighting must be the last!
+antigen bundle zsh-users/zsh-syntax-highlighting
 
-# TMUX
-alias mux="tmuxinator"
+# zsh appy antige
+antigen apply
 
-# XCODE
-alias symbolicatecrash="/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/symbolicatecrash"
-export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+# Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# ANDROID STUDIO
-export PATH=~/Library/Android/sdk/tools:$PATH
-export PATH=~/Library/Android/sdk/platform-tools:$PATH
-export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/Contents/Home
-
-# GRADLE
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/iker/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/iker/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/iker/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/iker/google-cloud-sdk/completion.zsh.inc'; fi
-
-# ghcup-env
-[ -f "/Users/iker/.ghcup/env" ] && source "/Users/iker/.ghcup/env" 
-
-# Postgresql
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

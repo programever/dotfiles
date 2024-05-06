@@ -1,6 +1,5 @@
 name: ts-bedrock-core
 root: ~/Workspace/ts-bedrock/core
-
 pre_window: nvm use
 
 windows:

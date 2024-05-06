@@ -1,5 +1,6 @@
 name: big-id-web
 root: ~/Workspace/big-id/web
+pre_window: nvm use
 
 windows:
   - editor: nvim

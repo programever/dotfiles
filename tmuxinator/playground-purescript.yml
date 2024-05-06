@@ -1,6 +1,6 @@
 name: playground-purescript
 root: ~/Workspace/playground/purescript
-pre_window: fnm use
+pre_window: nvm use
 
 windows:
   - editor: nvim

@@ -1,5 +1,6 @@
 name: big-id-api
 root: ~/Workspace/big-id/api
+pre_window: nvm use
 
 windows:
   - editor: nvim

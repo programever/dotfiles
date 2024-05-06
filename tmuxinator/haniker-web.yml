@@ -1,5 +1,6 @@
 name: haniker-web
 root: ~/Workspace/haniker/web/
+pre_window: nvm use
 
 windows:
   - editor: nvim

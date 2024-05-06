@@ -1,6 +1,5 @@
 name: ts-bedrock-api
 root: ~/Workspace/ts-bedrock/api
-
 pre_window: nvm use
 
 windows:

@@ -1,6 +1,5 @@
 name: ts-bedrock-web
 root: ~/Workspace/ts-bedrock/web/
-
 pre_window: nvm use
 
 windows:
