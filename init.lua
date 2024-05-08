@@ -99,6 +99,7 @@ require("lazy").setup({
 					return {
 						Visual = { bg = colors.yellow, fg = colors.base03 },
 						Search = { bg = colors.yellow, fg = colors.base03 },
+						CurSearch = { bg = colors.orange, fg = colors.base03 },
 
 						-- NeoTree colorscheme: https://github.com/loctvl842/monokai-pro.nvim/blob/master/lua/monokai-pro/theme/plugins/neo-tree.lua
 						NeoTreeRootName = { fg = colors.blue },
@@ -109,6 +110,33 @@ require("lazy").setup({
 			})
 			vim.o.background = "light"
 			vim.cmd.colorscheme("solarized")
+		end,
+	},
+
+	-- Syntax Highlight
+	-- https://github.com/nvim-treesitter/nvim-treesitter
+	-- brew install tree-sitter
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
+				ensure_installed = {
+					"lua",
+					"vimdoc",
+					"markdown",
+					"markdown_inline",
+					"html",
+					"typescript",
+					"purescript",
+				},
+				sync_install = true,
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				},
+			})
 		end,
 	},
 
@@ -245,25 +273,6 @@ require("lazy").setup({
 		opts = {
 			-- add any options here
 		},
-	},
-
-	-- Syntax Highlight
-	-- https://github.com/nvim-treesitter/nvim-treesitter
-	-- brew install tree-sitter
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
-				ensure_installed = { "lua", "vimdoc", "markdown", "markdown_inline", "typescript", "purescript" },
-				sync_install = true,
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = false,
-				},
-			})
-		end,
 	},
 
 	-- UI to LSP Plugin
