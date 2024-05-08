@@ -1,0 +1,18 @@
+[user]
+	name = Iker
+	email = tdtrinh.web@gmail.com
+[core]
+  pager = delta
+	excludesfile = /Users/iker/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/iker/.stCommitMsg
+[delta]
+  line-numbers = true
+  side-by-side = true
+  conflictstyle = diff3

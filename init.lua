@@ -16,12 +16,13 @@ vim.opt.rtp:prepend(lazypath)
 -- NeoVim Settings
 vim.g.python3_host_prog = "./pyenv/bin/python"
 vim.g.loaded_perl_provider = 0
-vim.cmd("syntax enable")
-vim.cmd("syntax on")
+vim.o.syntax = "on"
 vim.cmd("filetype plugin indent on")
 
 -- Editor behavior and appearance settings
 vim.opt.switchbuf = "useopen,usetab" -- Controls buffer switching behavior, 'useopen' finds existing window, 'usetab' switches tabs
+vim.opt.splitbelow = true -- split and focus
+vim.opt.splitright = true -- split and focus
 vim.opt.hlsearch = true -- Highlights matches of the last searched pattern
 vim.opt.incsearch = true -- Shows incremental search highlights as you type
 vim.opt.wrap = false -- Disables text wrapping
@@ -71,6 +72,8 @@ vim.keymap.set("n", "<Leader>s", ":w<CR>")
 vim.keymap.set("n", "<Leader>/", ":nohlsearch<CR>")
 vim.keymap.set("n", "<Leader>k", "i<cr><esc>")
 vim.keymap.set("n", "<Leader>y", "mcggVGy`c")
+vim.keymap.set("n", "<Leader>l", ":vsp<CR>")
+vim.keymap.set("n", "<Leader>j", ":sp<CR>")
 
 --------------------
 --- The plugins ----
@@ -273,7 +276,7 @@ require("lazy").setup({
 
 			require("lspsaga").setup({
 				symbol_in_winbar = {
-					enable = false,
+					enable = false, -- We using utilyre/barbecue.nvim
 				},
 				lightbulb = {
 					enable = false,
@@ -292,6 +295,31 @@ require("lazy").setup({
 			vim.keymap.set("n", "gn", "<Cmd>Lspsaga rename<CR>", noremapsilent)
 			vim.keymap.set("n", "ga", "<Cmd>Lspsaga code_action<CR>", noremapsilent)
 			vim.keymap.set("n", "gl", "<Cmd>Lspsaga preview_definition<CR>", noremapsilent)
+		end,
+	},
+
+	-- winbar Plugin (bar at the top of the editor)
+	-- https://github.com/utilyre/barbecue.nvim
+	{
+		"utilyre/barbecue.nvim",
+		name = "barbecue",
+		version = "*",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons",
+			"maxmx03/solarized.nvim", -- We using the colors function
+		},
+		opts = {
+			-- configurations go here
+		},
+		config = function()
+			local palette = require("solarized.palette")
+			local colors = palette.get_colors()
+			require("barbecue").setup({
+				theme = {
+					dirname = { fg = colors.base01 },
+				},
+			})
 		end,
 	},
 
