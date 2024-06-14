@@ -1,0 +1,11 @@
+name: papa-mobile
+root: ~/Workspace/papa/mobile
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - test: print -S "npm run test:watch"
+  - android: print -S "npm start:android"
+  - ios: print -S "npm start:ios"
+  - server: print -S "npm start"

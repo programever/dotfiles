@@ -192,10 +192,10 @@ require("lazy").setup({
 		config = function()
 			require("hlchunk").setup({
 				indent = {
-					chars = { "·", "¦" }, -- more code can be found in https://unicodeplus.com/
+					chars = { "‥", "⁚" }, -- more code can be found in https://unicodeplus.com/
 
 					style = {
-						"#002b36", -- base03
+						"#dbdbdb",
 					},
 				},
 				chunk = {
