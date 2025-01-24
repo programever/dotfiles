@@ -78,7 +78,103 @@ vim.keymap.set("n", "<Leader>j", ":sp<CR>")
 --------------------
 --- The plugins ----
 --------------------
+-- A dir for different workspaces to store neovim project-specific data
+local workspace_data_dir = vim.fn.stdpath("data"):gsub("/$", "") .. vim.fn.getcwd():gsub("/$", "")
+
 require("lazy").setup({
+	-- AI Plugin
+	-- https://github.com/Robitx/gp.nvim
+	{
+		"robitx/gp.nvim",
+		dependencies = {
+			-- copilot AI
+			-- Run in neovim: `:Copilot setup`
+			"github/copilot.vim",
+		},
+		config = function()
+			require("gp").setup({
+				default_chat_agent = "ChatCopilot",
+				default_command_agent = "CodeCopilot",
+				-- Keep each chat in it own directory
+				chat_dir = workspace_data_dir .. "/gp/chats",
+				state_dir = workspace_data_dir .. "/gp/persisted",
+				log_file = workspace_data_dir .. "/gp.nvim.log",
+				log_sensitive = true,
+				providers = {
+					copilot = {
+						-- Requires Github Personal Access Token
+						-- brew install gh
+						-- gh auth login
+						-- gh extension install github/gh-copilot
+						endpoint = "https://api.githubcopilot.com/chat/completions",
+						secret = {
+							"bash",
+							"-c",
+							"cat ~/.config/github-copilot/apps.json | sed -e 's/.*oauth_token...//;s/\".*//'",
+						},
+					},
+				},
+				agents = {
+					{
+						provider = "copilot",
+						name = "ChatCopilot",
+						chat = true,
+						command = false,
+						model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
+						system_prompt = require("gp.defaults").chat_system_prompt,
+					},
+					{
+						provider = "copilot",
+						name = "CodeCopilot",
+						chat = false,
+						command = true,
+						model = { model = "gpt-4o", temperature = 0.8, top_p = 1, n = 1 },
+						system_prompt = require("gp.defaults").code_system_prompt,
+					},
+				},
+			})
+
+			-- Keyboard shortcuts
+			-- https://github.com/Robitx/gp.nvim?tab=readme-ov-file#shortcuts
+			local function keymapOptions(desc)
+				return {
+					noremap = true,
+					silent = true,
+					nowait = true,
+					desc = "AI Keymap: " .. desc,
+				}
+			end
+
+			-- Chat commands
+			vim.keymap.set({ "n", "i" }, "<C-g>t", "<cmd>GpChatToggle vsplit<cr>", keymapOptions("Open Chat"))
+			vim.keymap.set("v", "<C-g>t", ":<C-u>'<,'>GpChatPaste<cr>", keymapOptions("Visual New Chat"))
+			vim.keymap.set("n", "<C-g>c", "<cmd>GpChatNew<cr>", keymapOptions("New Chat"))
+			vim.keymap.set("n", "<C-g>d", "<cmd>GpChatDelete<cr>", keymapOptions("Delete Chat"))
+			vim.keymap.set("n", "<C-g>f", "<cmd>GpChatFinder<cr>", keymapOptions("Delete Chat"))
+
+			-- Editing commands
+			vim.keymap.set({ "n", "i" }, "<C-g>i", "<cmd>GpRewrite<cr>", keymapOptions("Inline Rewrite"))
+			vim.keymap.set({ "n", "i" }, "<C-g>a", "<cmd>GpAppend<cr>", keymapOptions("Append (after)"))
+			vim.keymap.set({ "n", "i" }, "<C-g>b", "<cmd>GpPrepend<cr>", keymapOptions("Prepend (before)"))
+
+			vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpRewrite<cr>", keymapOptions("Visual Rewrite"))
+			vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<cr>", keymapOptions("Visual Append (after)"))
+			vim.keymap.set("v", "<C-g>b", ":<C-u>'<,'>GpPrepend<cr>", keymapOptions("Visual Prepend (before)"))
+
+			vim.keymap.set({ "n", "i" }, "<C-g>p", "<cmd>GpPopup<cr>", keymapOptions("Popup"))
+			vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpPopup<cr>", keymapOptions("Visual Popup"))
+
+			vim.keymap.set("i", "<C-g>j", "<Plug>(copilot-previous)", keymapOptions("Previous suggestion"))
+			vim.keymap.set("i", "<C-g>k", "<Plug>(copilot-next)", keymapOptions("Next suggestion"))
+			vim.keymap.set("i", "<C-w>", "<Plug>(copilot-accept-word)")
+			vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
+				expr = true,
+				replace_keycodes = false,
+				desc = "Accept Copilot completion",
+			})
+		end,
+	},
+
 	-- colorscheme
 	-- https://github.com/maxmx03/solarized.nvim
 	{

@@ -1,8 +1,8 @@
-name: papa-admin
-root: ~/Workspace/papa/admin
+name: dunia
+root: ~/Workspace/dunia
 pre_window: nvm use
 
 windows:
   - editor: nvim
   - bash: git fetch --all && git status
-  - server: npm start
+  - api: print -S "npm start"

@@ -1,5 +1,5 @@
-name: papa-admin
-root: ~/Workspace/papa/admin
+name: papa-media
+root: ~/Workspace/papa/media-service
 pre_window: nvm use
 
 windows:

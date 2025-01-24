@@ -4,5 +4,5 @@ pre_window: nvm use
 
 windows:
   - editor: nvim
-  - bash: git fetch --all && git status
-  - api: print -S "npm start"
+  - bash1: git fetch --all && git status
+  - bash2: git fetch --all && git status

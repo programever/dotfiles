@@ -11,6 +11,9 @@ export PATH=./node_modules/.bin:${PATH}
 # zsh plugins
 source $HOME/Workspace/dotfiles/antigen.zsh
 
+# Vim-like key binding
+antigen bundle jeffreytse/zsh-vi-mode
+
 # zsh auto suggestion
 antigen bundle zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#D7D7D7,underline"
@@ -39,3 +42,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Android Studio
+export ANDROID_HOME=~/Library/Android/sdk
+export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jbr/Contents/Home
+export PATH=$ANDROID_HOME/emulator:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH

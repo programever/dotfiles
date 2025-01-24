@@ -36,8 +36,14 @@ Run :checkhealth ensure it is OK
 # Iterm
 - Preference -> Profile -> Keys -> Keys mapping - Add Shift+Return to Send Hex Code: 0x1B
 - Preference -> Geneal -> Selection -> Applications in terminal may access clipboard
-- Preference -> Profile -> Text -> Font use FiraCode Nerd and Use ligatures
+- Preference -> Profile -> Text -> Font use FiraCode Nerd and Use ligatures -> Font size 14
 
 # Others
 brew install stylemistake/formulae/runner
 npm install -g spago
+
+# Copilot
+brew install gh
+gh auth login
+gh extension install github/gh-copilot
+Run in neovim: `:Copilot setup`
