@@ -19,14 +19,12 @@ ln -s  ~/Workspace/dotfiles/init.lua ~/.config/nvim/init.lua
 
 # Setup python3
 cd ~/Workspace/dotfiles
-mkdif ./pyenv
+mkdir ./pyenv
 python3 -m venv ./pyenv
 source ./pyenv/bin/activate
 pip install pynvim
-cd ~
 
 # Installation for init.lua
-brew tap homebrew/cask-fonts 
 brew install font-fira-code-nerd-font fzf fd bat ripgrep git-delta tree-sitter stylua lua-language-server
 npm install -g @fsouza/prettierd typescript typescript-language-server
 

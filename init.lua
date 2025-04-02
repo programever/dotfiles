@@ -418,12 +418,8 @@ require("lazy").setup({
 			-- configurations go here
 		},
 		config = function()
-			local palette = require("solarized.palette")
-			local colors = palette.get_colors()
 			require("barbecue").setup({
-				theme = {
-					dirname = { fg = colors.base01 },
-				},
+				theme = {},
 			})
 		end,
 	},
