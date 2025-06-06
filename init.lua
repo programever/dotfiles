@@ -533,10 +533,10 @@ require("lazy").setup({
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { { "prettier", "prettierd" } },
-				javascriptreact = { { "prettier", "prettierd" } },
-				typescript = { { "prettier", "prettierd" } },
-				typescriptreact = { { "prettier", "prettierd" } },
+				javascript = { "prettier", "prettierd" },
+				javascriptreact = { "prettier", "prettierd" },
+				typescript = { "prettier", "prettierd" },
+				typescriptreact = { "prettier", "prettierd" },
 				purescript = { "purs-tidy" },
 			},
 			format_on_save = {

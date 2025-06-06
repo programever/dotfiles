@@ -16,7 +16,7 @@ task_start:work() {
 }
 
 task_start:ts-bedrock() {
-projects=("ts-bedrock-core" "ts-bedrock-api" "ts-bedrock-web")
+  projects=("ts-bedrock-core" "ts-bedrock-api" "ts-bedrock-web")
 
   for project in "${projects[@]}"; do
     echo "Starting tmux session for $project..."
