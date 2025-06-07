@@ -1,0 +1,8 @@
+name: ts-bedrock-example
+root: ~/Workspace/ts-bedrock-example
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - test: print -S "npm run test:watch"
+  - api: print -S "npm start"

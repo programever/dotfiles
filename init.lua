@@ -120,7 +120,7 @@ require("lazy").setup({
 						name = "ChatCopilot",
 						chat = true,
 						command = false,
-						model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
+						model = { model = "gpt-4.1", temperature = 0 },
 						system_prompt = require("gp.defaults").chat_system_prompt,
 					},
 					{
@@ -128,7 +128,7 @@ require("lazy").setup({
 						name = "CodeCopilot",
 						chat = false,
 						command = true,
-						model = { model = "gpt-4o", temperature = 0.8, top_p = 1, n = 1 },
+						model = { model = "gpt-4.1", temperature = 0 },
 						system_prompt = require("gp.defaults").code_system_prompt,
 					},
 				},
@@ -261,7 +261,8 @@ require("lazy").setup({
 				},
 			})
 
-			vim.keymap.set("n", "<Leader>n", ":Neotree toggle<CR>")
+			vim.keymap.set("n", "<Leader>n", ":Neotree source=filesystem toggle<CR>")
+			vim.keymap.set("n", "<Leader>z", ":Neotree source=git_status toggle<CR>")
 		end,
 	},
 
@@ -614,4 +615,44 @@ require("lazy").setup({
 	-- Purescript
 	-- https://github.com/purescript-contrib/purescript-vim
 	{ "purescript-contrib/purescript-vim" },
+
+	-- Markdown
+	{
+		"preservim/vim-markdown",
+		ft = "markdown",
+		config = function()
+			vim.keymap.set("n", "<leader>m", "za", { desc = "Toggle fold" })
+			vim.keymap.set("n", "<leader>mo", "zR", { desc = "Open all folds" })
+			vim.keymap.set("n", "<leader>ml", "zM", { desc = "Close all folds" })
+		end,
+	},
+
+	-- Terminal in NVIM
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = function()
+			require("toggleterm").setup({
+				open_mapping = [[<c-\>]],
+				direction = "horizontal",
+				size = function(term)
+					if term.direction == "horizontal" then
+						return 15
+					elseif term.direction == "vertical" then
+						return 50
+					end
+				end,
+			})
+			vim.keymap.set(
+				"n",
+				"<leader>t",
+				"<cmd>ToggleTerm direction=horizontal<CR>",
+				{ desc = "Horizontal Terminal" }
+			)
+			vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Vertical Terminal" })
+			vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Floating Terminal" })
+			vim.keymap.set("n", "<leader>tb", "<cmd>ToggleTerm direction=tab<CR>", { desc = "Terminal in Tab" })
+			vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
+		end,
+	},
 })
