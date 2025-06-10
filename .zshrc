@@ -4,6 +4,7 @@ alias simu='open /Applications/Xcode.app/Contents/Developer/Applications/Simulat
 alias ll='ls -al'
 alias ls='ls -GFh'
 alias mux="tmuxinator"
+alias ai="ts-node ~/Workspace/ai/src/Runner.ts"
 
 # Use local npm binaries over global npm binaries
 export PATH=./node_modules/.bin:${PATH}

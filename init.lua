@@ -651,7 +651,6 @@ require("lazy").setup({
 			)
 			vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Vertical Terminal" })
 			vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Floating Terminal" })
-			vim.keymap.set("n", "<leader>tb", "<cmd>ToggleTerm direction=tab<CR>", { desc = "Terminal in Tab" })
 			vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
 		end,
 	},

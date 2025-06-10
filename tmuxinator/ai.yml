@@ -1,0 +1,8 @@
+name: ai
+root: ~/Workspace/ai
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all
+  - bash: echo
