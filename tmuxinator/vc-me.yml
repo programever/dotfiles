@@ -1,0 +1,8 @@
+name: vc-me
+root: ~/Workspace/vc-me
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash1: git fetch --all
+  - bash2: git fetch --all

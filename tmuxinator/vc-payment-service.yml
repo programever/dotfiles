@@ -1,0 +1,8 @@
+name: vc-payment-service
+root: ~/Workspace/vc-payment-service/
+pre_window: nvm use 18
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server: echo "Happy coding..."

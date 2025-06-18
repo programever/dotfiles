@@ -1,0 +1,8 @@
+name: vc-360
+root: ~/Workspace/vc-c360/
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server: echo "Happy coding..."

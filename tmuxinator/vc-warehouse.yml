@@ -1,0 +1,8 @@
+name: vc-warehouse
+root: ~/Workspace/vc-warehouse/
+pre_window: nvm use 18
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server: echo "Happy coding..."

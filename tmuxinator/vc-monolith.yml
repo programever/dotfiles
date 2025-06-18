@@ -1,0 +1,7 @@
+name: vc-monolith
+root: ~/Workspace/vc-monolith
+
+windows:
+  - editor: nvim
+  - bash1: git fetch --all
+  - bash2: git fetch --all

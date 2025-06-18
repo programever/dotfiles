@@ -1,0 +1,8 @@
+name: vc-web-testing
+root: ~/Workspace/vc-web-testing/
+pre_window: nvm use 20
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server: echo "Happy coding..."
