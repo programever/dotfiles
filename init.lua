@@ -739,3 +739,5 @@ require("lazy").setup({
 		},
 	},
 })
+
+require("alpha")

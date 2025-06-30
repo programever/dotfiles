@@ -1,0 +1,8 @@
+name: nvim-magenta
+root: ~/Workspace/nvim/magenta.nvim
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash1: git fetch --all
+  - bash2: git fetch --all

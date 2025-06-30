@@ -1,5 +1,5 @@
-name: ai
-root: ~/Workspace/ai
+name: alpha
+root: ~/Workspace/alpha
 pre_window: nvm use
 
 windows:

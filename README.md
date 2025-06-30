@@ -1,4 +1,6 @@
 # Make symbolic link
+mkdir -p ~/.config/nvim/lua/alpha
+mkdir -p ~/.config/gitui
 ln -s ~/Workspace/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/Workspace/dotfiles/.zshrc ~/.zshrc
 ln -s ~/Workspace/dotfiles/.tmux.conf ~/.tmux.conf
@@ -6,6 +8,8 @@ ln -s ~/Workspace/dotfiles/.gemrc ~/.gemrc
 ln -s ~/Workspace/dotfiles/ranger ~/.config/ranger
 ln -s ~/Workspace/dotfiles/.gitui-keys.ron ~/.config/gitui/key_bindings.ron
 ln -s ~/Workspace/dotfiles/.gitui-theme.ron ~/.config/gitui/theme.ron
+ln -s ~/Workspace/alpha/lua/init.lua ~/.config/nvim/lua/alpha/init.lua
+
 
 mkdir .config
 ln -s  ~/Workspace/dotfiles/tmuxinator ~/.config/tmuxinator

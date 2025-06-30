@@ -4,7 +4,7 @@ alias simu='open /Applications/Xcode.app/Contents/Developer/Applications/Simulat
 alias ll='ls -al'
 alias ls='ls -GFh'
 alias mux="tmuxinator"
-alias ai="ts-node ~/Workspace/ai/src/Runner.ts"
+alias alpha="ts-node ~/Workspace/alpha/src/Cli.ts"
 
 # Use local npm binaries over global npm binaries
 export PATH=./node_modules/.bin:${PATH}
@@ -54,3 +54,20 @@ export PATH=$ANDROID_HOME/platform-tools:$PATH
 if [ -f "$HOME/.zsh_secrets" ]; then
   source "$HOME/.zsh_secrets"
 fi
+
+# Alpha server
+alphaAPI() {
+  # Check if server is already running on port 3000 (for example)
+  if lsof -i :9999 >/dev/null 2>&1; then
+    echo "✅ Alpha API server already running on port 9999."
+  else
+    (
+      echo "🚀 Starting Alpha API server..."
+      cd ~/Workspace/alpha || return
+      nvm use
+      npm run api > /dev/null 2>&1 &
+      echo "✅ Alpha API server already running on port 9999."
+    )
+  fi
+}
+# alphaAPI
