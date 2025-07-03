@@ -1,0 +1,8 @@
+name: airon-agent-base
+root: ~/Workspace/airon-agent-base
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all
+  - bash: echo

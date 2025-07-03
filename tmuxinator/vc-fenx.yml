@@ -1,8 +1,0 @@
-name: vc-fenx
-root: ~/Workspace/vc-fenx/
-pre_window: nvm use
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - server: echo "Happy coding..."

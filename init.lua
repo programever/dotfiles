@@ -211,6 +211,7 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
 			config = function()
+				---@diagnostic disable-next-line: missing-fields
 				require("nvim-treesitter.configs").setup({
 					-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
 					ensure_installed = {
@@ -337,6 +338,7 @@ require("lazy").setup({
 				"FabijanZulj/blame.nvim",
 				lazy = false,
 				config = function()
+					---@diagnostic disable-next-line: missing-fields
 					require("blame").setup({})
 					vim.keymap.set("n", "zb", "<cmd>BlameToggle<CR>", { silent = true })
 				end,
@@ -421,6 +423,7 @@ require("lazy").setup({
 				-- configurations go here
 			},
 			config = function()
+				---@diagnostic disable-next-line: missing-fields
 				require("barbecue").setup({
 					theme = {},
 				})
@@ -460,6 +463,7 @@ require("lazy").setup({
 
 				-- See other keymaps of LuaSnip in nvim-cmp
 				vim.keymap.set({ "i" }, "<C-h>", function()
+					---@diagnostic disable-next-line: missing-parameter
 					require("luasnip").expand()
 				end, { silent = true })
 			end,
@@ -496,6 +500,7 @@ require("lazy").setup({
 						["<CR>"] = cmp.mapping(function(fallback)
 							if cmp.visible() then
 								if luasnip.expandable() then
+									---@diagnostic disable-next-line: missing-parameter
 									luasnip.expand()
 								else
 									cmp.confirm({
@@ -635,6 +640,47 @@ require("lazy").setup({
 		-- Purescript
 		-- https://github.com/purescript-contrib/purescript-vim
 		{ "purescript-contrib/purescript-vim" },
+
+		-- Lua LSP
+		{
+			"folke/lazydev.nvim",
+			ft = "lua", -- only load on lua files
+			opts = {
+				library = {
+					-- See the configuration section for more details
+					-- Load luvit types when the `vim.uv` word is found
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		},
+		{ -- optional cmp completion source for require statements and module annotations
+			"hrsh7th/nvim-cmp",
+			opts = function(_, opts)
+				opts.sources = opts.sources or {}
+				table.insert(opts.sources, {
+					name = "lazydev",
+					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+				})
+			end,
+		},
+		{ -- optional blink completion source for require statements and module annotations
+			"saghen/blink.cmp",
+			version = "1.*",
+			opts = {
+				sources = {
+					-- add lazydev to your completion providers
+					default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+					providers = {
+						lazydev = {
+							name = "LazyDev",
+							module = "lazydev.integrations.blink",
+							-- make lazydev completions top priority (see `:h blink.cmp`)
+							score_offset = 100,
+						},
+					},
+				},
+			},
+		},
 
 		-- Terminal in NVIM
 		{

@@ -1,8 +1,0 @@
-name: vc-atlas
-root: ~/Workspace/vc-atlas/
-pre_window: nvm use
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - server: echo "Happy coding..."

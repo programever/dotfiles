@@ -1,0 +1,8 @@
+name: airon
+root: ~/Workspace/airon.nvim
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all
+  - bash: echo

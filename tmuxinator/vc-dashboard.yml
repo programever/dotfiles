@@ -1,8 +1,0 @@
-name: vc-dashboard
-root: ~/Workspace/vc-vulcain-dashboard/
-pre_window: nvm use 20
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - server: echo "Happy coding..."
