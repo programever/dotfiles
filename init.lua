@@ -104,6 +104,92 @@ require("lazy").setup({
 				vim.keymap.set("i", "<C-g>k", "<Plug>(copilot-next)")
 			end,
 		},
+		{
+			"robitx/gp.nvim",
+			dependencies = { "github/copilot.vim" },
+			config = function()
+				local workspace_data_dir = vim.fn.stdpath("data"):gsub("/$", "") .. vim.fn.getcwd():gsub("/$", "")
+				require("gp").setup({
+					default_chat_agent = "ChatCopilot",
+					default_command_agent = "CodeCopilot",
+					-- Keep each chat in it own directory
+					chat_dir = workspace_data_dir .. "/gp/chats",
+					state_dir = workspace_data_dir .. "/gp/persisted",
+					log_file = workspace_data_dir .. "/gp.nvim.log",
+					log_sensitive = true,
+					providers = {
+						copilot = {
+							-- Requires Github Personal Access Token
+							-- brew install gh
+							-- gh auth login
+							-- gh extension install github/gh-copilot
+							endpoint = "https://api.githubcopilot.com/chat/completions",
+							secret = {
+								"bash",
+								"-c",
+								"cat ~/.config/github-copilot/apps.json | sed -e 's/.*oauth_token...//;s/\".*//'",
+							},
+						},
+					},
+					agents = {
+						{
+							provider = "copilot",
+							name = "ChatCopilot",
+							chat = true,
+							command = false,
+							model = { model = "gpt-4.1", temperature = 0 },
+							system_prompt = require("gp.defaults").chat_system_prompt,
+						},
+						{
+							provider = "copilot",
+							name = "CodeCopilot",
+							chat = false,
+							command = true,
+							model = { model = "gpt-4.1", temperature = 0 },
+							system_prompt = require("gp.defaults").code_system_prompt,
+						},
+					},
+				})
+
+				-- Keyboard shortcuts
+				-- https://github.com/Robitx/gp.nvim?tab=readme-ov-file#shortcuts
+				local function keymapOptions(desc)
+					return {
+						noremap = true,
+						silent = true,
+						nowait = true,
+						desc = "AI Keymap: " .. desc,
+					}
+				end
+				-- Chat commands
+				vim.keymap.set({ "n", "i" }, "<C-g>t", "<cmd>GpChatToggle vsplit<cr>", keymapOptions("Open Chat"))
+				vim.keymap.set("v", "<C-g>t", ":<C-u>'<,'>GpChatPaste<cr>", keymapOptions("Visual New Chat"))
+				vim.keymap.set("n", "<C-g>c", "<cmd>GpChatNew<cr>", keymapOptions("New Chat"))
+				vim.keymap.set("n", "<C-g>d", "<cmd>GpChatDelete<cr>", keymapOptions("Delete Chat"))
+				vim.keymap.set("n", "<C-g>f", "<cmd>GpChatFinder<cr>", keymapOptions("Delete Chat"))
+
+				-- Editing commands
+				vim.keymap.set({ "n", "i" }, "<C-g>i", "<cmd>GpRewrite<cr>", keymapOptions("Inline Rewrite"))
+				vim.keymap.set({ "n", "i" }, "<C-g>a", "<cmd>GpAppend<cr>", keymapOptions("Append (after)"))
+				vim.keymap.set({ "n", "i" }, "<C-g>b", "<cmd>GpPrepend<cr>", keymapOptions("Prepend (before)"))
+
+				vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpRewrite<cr>", keymapOptions("Visual Rewrite"))
+				vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<cr>", keymapOptions("Visual Append (after)"))
+				vim.keymap.set("v", "<C-g>b", ":<C-u>'<,'>GpPrepend<cr>", keymapOptions("Visual Prepend (before)"))
+
+				vim.keymap.set({ "n", "i" }, "<C-g>p", "<cmd>GpPopup<cr>", keymapOptions("Popup"))
+				vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpPopup<cr>", keymapOptions("Visual Popup"))
+
+				vim.keymap.set("i", "<C-g>j", "<Plug>(copilot-previous)", keymapOptions("Previous suggestion"))
+				vim.keymap.set("i", "<C-g>k", "<Plug>(copilot-next)", keymapOptions("Next suggestion"))
+				vim.keymap.set("i", "<C-w>", "<Plug>(copilot-accept-word)")
+				vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
+					expr = true,
+					replace_keycodes = false,
+					desc = "Accept Copilot completion",
+				})
+			end,
+		},
 
 		-- https://github.com/dlants/magenta.nvim/blob/main/lua/magenta/options.lua
 		-- Forked to https://github.com/haniker-dev/magenta.nvim
@@ -167,7 +253,12 @@ require("lazy").setup({
 			"MeanderingProgrammer/render-markdown.nvim",
 			dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 			ft = { "markdown" },
-			opts = {},
+			opts = {
+				anti_conceal = {
+					-- Disabled for Airon chat buffer
+					enabled = false,
+				},
+			},
 		},
 
 		-- colorscheme
@@ -584,6 +675,10 @@ require("lazy").setup({
 				-- We are using pmizio/typescript-tools.nvim plugin
 				-- which installs itself directly so we don't configure it here
 
+				-- Eslint LSP
+				-- npm i -g vscode-langservers-extracted
+				lspconfig.eslint.setup({})
+
 				-- Purescript LSP
 				-- npm i -g purescript-language-server purs-tidy
 				lspconfig.purescriptls.setup({
@@ -653,7 +748,7 @@ require("lazy").setup({
 				},
 			},
 		},
-		{ -- optional cmp completion source for require statements and module annotations
+		{
 			"hrsh7th/nvim-cmp",
 			opts = function(_, opts)
 				opts.sources = opts.sources or {}
@@ -663,7 +758,7 @@ require("lazy").setup({
 				})
 			end,
 		},
-		{ -- optional blink completion source for require statements and module annotations
+		{
 			"saghen/blink.cmp",
 			version = "1.*",
 			opts = {
@@ -781,6 +876,15 @@ require("lazy").setup({
 					},
 				})
 				vim.keymap.set("n", "<leader>g", "<cmd>Gitui<CR>", { silent = true })
+			end,
+		},
+		{
+			"haniker-dev/airon.nvim",
+			dev = true,
+			lazy = false,
+			config = function()
+				require("airon").setup({})
+				vim.keymap.set("n", "<Leader>r", "<cmd>lua require('lazy.core.loader').reload('airon.nvim')<CR>")
 			end,
 		},
 	},

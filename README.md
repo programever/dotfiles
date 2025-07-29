@@ -27,7 +27,7 @@ export ANTHROPIC_API_KEY=""
 - Install nvm + latest node 20
 - Install `brew install stylemistake/formulae/runner tmuxinator tmux neovim python3 gh font-fira-code-nerd-font fzf fd bat ripgrep git-delta tree-sitter stylua lua-language-server gitui ranger`
 - Install `brew tap homebrew/cask-fonts`
-- Install `npm install -g neovim spago @fsouza/prettierd typescript typescript-language-server purescript-language-server purs-tidy`
+- Install `npm install -g neovim spago @fsouza/prettierd typescript typescript-language-server purescript-language-server purs-tidy vscode-langservers-extracted`
 
 # python3
 cd ~/Workspace/dotfiles

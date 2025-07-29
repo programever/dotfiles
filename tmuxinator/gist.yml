@@ -1,7 +1,0 @@
-name: gist
-root: ~/Workspace/depreciated/gist
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all
-

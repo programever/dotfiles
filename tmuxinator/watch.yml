@@ -1,0 +1,9 @@
+name: watch
+
+windows:
+  - main:
+      panes:
+        - cd ~/Workspace/nvim/airon.nvim && npm run tsc:watch
+        - cd ~/Workspace/uob && npm run start
+      layout: main-vertical
+  - bash: echo 

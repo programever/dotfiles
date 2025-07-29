@@ -1,0 +1,9 @@
+name: ts-bedrock
+root: ~/Workspace/ts-bedrock
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - database: print -S "npm run external:start"
+  - server: print -S "npm run "

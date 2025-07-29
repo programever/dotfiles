@@ -1,8 +1,9 @@
 name: airon
-root: ~/Workspace/airon.nvim
+root: ~/Workspace/nvim/airon.nvim
 pre_window: nvm use
 
 windows:
   - editor: nvim
   - bash: git fetch --all
-  - bash: echo
+  - plugin: print -S "tail -f ./airon.log"
+  - agent: print -S "npm run start:agent:openai"
