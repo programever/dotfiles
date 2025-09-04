@@ -1,9 +1,11 @@
 name: watch
+root: ~/Workspace
 
 windows:
   - main:
       panes:
-        - cd ~/Workspace/nvim/airon.nvim && npm run tsc:watch
-        - cd ~/Workspace/uob && npm run start
+        - print -S "cd toppan && npm run start"
+#        - print -S "cd uob && npm run start"
+#        - print -S "cd nvim/airon.nvim && npm run tsc:watch"
       layout: main-vertical
   - bash: echo 

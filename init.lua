@@ -89,105 +89,67 @@ require("lazy").setup({
 	spec = {
 		-- AI Plugin
 		-- GitHub Copilot plugin
-		{
-			"github/copilot.vim",
-			config = function()
-				vim.g.copilot_no_tab_map = true
+		-- {
+		-- 	"github/copilot.vim",
+		-- 	config = function()
+		-- 		vim.g.copilot_no_tab_map = true
+		-- 		-- vim.g.copilot_workspace_folders = { "~/Projects/myproject" }
+		--
+		-- 		vim.keymap.set("n", "<Leader>p", "<cmd>Copilot panel<CR>")
+		-- 		vim.keymap.set("i", "<C-w>", "<Plug>(copilot-accept-word)")
+		-- 		vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
+		-- 			expr = true,
+		-- 			replace_keycodes = false,
+		-- 			desc = "Accept Copilot completion",
+		-- 		})
+		-- 		vim.keymap.set("i", "<C-g>j", "<Plug>(copilot-previous)")
+		-- 		vim.keymap.set("i", "<C-g>k", "<Plug>(copilot-next)")
+		-- 	end,
+		-- },
 
-				vim.keymap.set("i", "<C-w>", "<Plug>(copilot-accept-word)")
-				vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
-					expr = true,
-					replace_keycodes = false,
-					desc = "Accept Copilot completion",
-				})
-				vim.keymap.set("i", "<C-g>j", "<Plug>(copilot-previous)")
-				vim.keymap.set("i", "<C-g>k", "<Plug>(copilot-next)")
-			end,
-		},
+		-- Better GitHub Copilot plugin
+		-- https://github.com/zbirenbaum/copilot.lua
+		-- Run `:Copilot auth` to authenticate
 		{
-			"robitx/gp.nvim",
-			dependencies = { "github/copilot.vim" },
+			"zbirenbaum/copilot.lua",
 			config = function()
-				local workspace_data_dir = vim.fn.stdpath("data"):gsub("/$", "") .. vim.fn.getcwd():gsub("/$", "")
-				require("gp").setup({
-					default_chat_agent = "ChatCopilot",
-					default_command_agent = "CodeCopilot",
-					-- Keep each chat in it own directory
-					chat_dir = workspace_data_dir .. "/gp/chats",
-					state_dir = workspace_data_dir .. "/gp/persisted",
-					log_file = workspace_data_dir .. "/gp.nvim.log",
-					log_sensitive = true,
-					providers = {
-						copilot = {
-							-- Requires Github Personal Access Token
-							-- brew install gh
-							-- gh auth login
-							-- gh extension install github/gh-copilot
-							endpoint = "https://api.githubcopilot.com/chat/completions",
-							secret = {
-								"bash",
-								"-c",
-								"cat ~/.config/github-copilot/apps.json | sed -e 's/.*oauth_token...//;s/\".*//'",
-							},
+				require("copilot").setup({
+					filetypes = {
+						["*"] = true,
+					},
+					suggestion = {
+						enabled = true,
+						auto_trigger = true,
+						hide_during_completion = false,
+						debounce = 75,
+						trigger_on_accept = true,
+						keymap = {
+							accept = "<C-l>",
+							accept_word = "<C-w>",
+							accept_line = nil,
+							next = "<C-g>j",
+							prev = "<C-g>k",
+							dismiss = "<C-q>",
 						},
 					},
-					agents = {
-						{
-							provider = "copilot",
-							name = "ChatCopilot",
-							chat = true,
-							command = false,
-							model = { model = "gpt-4.1", temperature = 0 },
-							system_prompt = require("gp.defaults").chat_system_prompt,
+					panel = {
+						enabled = true,
+						auto_refresh = true,
+						keymap = {
+							jump_next = "<C-j>",
+							jump_prev = "<C-k>",
+							accept = "<CR>",
+							refresh = "gr",
+							open = nil,
 						},
-						{
-							provider = "copilot",
-							name = "CodeCopilot",
-							chat = false,
-							command = true,
-							model = { model = "gpt-4.1", temperature = 0 },
-							system_prompt = require("gp.defaults").code_system_prompt,
+						layout = {
+							position = "right", -- | top | left | right | bottom |
+							ratio = 0.3,
 						},
 					},
 				})
 
-				-- Keyboard shortcuts
-				-- https://github.com/Robitx/gp.nvim?tab=readme-ov-file#shortcuts
-				local function keymapOptions(desc)
-					return {
-						noremap = true,
-						silent = true,
-						nowait = true,
-						desc = "AI Keymap: " .. desc,
-					}
-				end
-				-- Chat commands
-				vim.keymap.set({ "n", "i" }, "<C-g>t", "<cmd>GpChatToggle vsplit<cr>", keymapOptions("Open Chat"))
-				vim.keymap.set("v", "<C-g>t", ":<C-u>'<,'>GpChatPaste<cr>", keymapOptions("Visual New Chat"))
-				vim.keymap.set("n", "<C-g>c", "<cmd>GpChatNew<cr>", keymapOptions("New Chat"))
-				vim.keymap.set("n", "<C-g>d", "<cmd>GpChatDelete<cr>", keymapOptions("Delete Chat"))
-				vim.keymap.set("n", "<C-g>f", "<cmd>GpChatFinder<cr>", keymapOptions("Delete Chat"))
-
-				-- Editing commands
-				vim.keymap.set({ "n", "i" }, "<C-g>i", "<cmd>GpRewrite<cr>", keymapOptions("Inline Rewrite"))
-				vim.keymap.set({ "n", "i" }, "<C-g>a", "<cmd>GpAppend<cr>", keymapOptions("Append (after)"))
-				vim.keymap.set({ "n", "i" }, "<C-g>b", "<cmd>GpPrepend<cr>", keymapOptions("Prepend (before)"))
-
-				vim.keymap.set("v", "<C-g>i", ":<C-u>'<,'>GpRewrite<cr>", keymapOptions("Visual Rewrite"))
-				vim.keymap.set("v", "<C-g>a", ":<C-u>'<,'>GpAppend<cr>", keymapOptions("Visual Append (after)"))
-				vim.keymap.set("v", "<C-g>b", ":<C-u>'<,'>GpPrepend<cr>", keymapOptions("Visual Prepend (before)"))
-
-				vim.keymap.set({ "n", "i" }, "<C-g>p", "<cmd>GpPopup<cr>", keymapOptions("Popup"))
-				vim.keymap.set("v", "<C-g>p", ":<C-u>'<,'>GpPopup<cr>", keymapOptions("Visual Popup"))
-
-				vim.keymap.set("i", "<C-g>j", "<Plug>(copilot-previous)", keymapOptions("Previous suggestion"))
-				vim.keymap.set("i", "<C-g>k", "<Plug>(copilot-next)", keymapOptions("Next suggestion"))
-				vim.keymap.set("i", "<C-w>", "<Plug>(copilot-accept-word)")
-				vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
-					expr = true,
-					replace_keycodes = false,
-					desc = "Accept Copilot completion",
-				})
+				vim.keymap.set("n", "<Leader>p", "<cmd>lua require('copilot.panel').toggle()<CR>")
 			end,
 		},
 
@@ -655,6 +617,7 @@ require("lazy").setup({
 					purescript = { "purs-tidy" },
 					json = { "prettier", "prettierd" },
 					jsonc = { "prettier", "prettierd" },
+					xml = { "xmllint" },
 				},
 				format_on_save = {
 					timeout_ms = 500,

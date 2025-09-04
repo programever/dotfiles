@@ -5,5 +5,4 @@ pre_window: nvm use
 windows:
   - editor: nvim
   - bash1: git fetch --all && git status
-  - bash2: npm run db:start
-  - server: npm start
+  - bash2: echo 
