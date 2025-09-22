@@ -164,12 +164,12 @@ require("lazy").setup({
 			config = function()
 				require("magenta").setup({
 					profiles = {
-						{
-							name = "gpt-4.1-mini",
-							provider = "openai",
-							model = "gpt-4.1-mini",
-							apiKeyEnvVar = "OPENAI_API_KEY",
-						},
+						-- {
+						-- 	name = "gpt-4.1-mini",
+						-- 	provider = "openai",
+						-- 	model = "gpt-4.1-mini",
+						-- 	apiKeyEnvVar = "OPENAI_API_KEY",
+						-- },
 						{
 							name = "claude-sonnet-4",
 							provider = "anthropic",
