@@ -88,68 +88,68 @@ require("lazy").setup({
 	},
 	spec = {
 		-- AI Plugin
-		-- GitHub Copilot plugin
+
 		-- {
-		-- 	"github/copilot.vim",
+		-- 	"haniker-dev/airon.nvim",
+		-- 	dev = true,
+		-- 	lazy = false,
 		-- 	config = function()
-		-- 		vim.g.copilot_no_tab_map = true
-		-- 		-- vim.g.copilot_workspace_folders = { "~/Projects/myproject" }
-		--
-		-- 		vim.keymap.set("n", "<Leader>p", "<cmd>Copilot panel<CR>")
-		-- 		vim.keymap.set("i", "<C-w>", "<Plug>(copilot-accept-word)")
-		-- 		vim.keymap.set("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
-		-- 			expr = true,
-		-- 			replace_keycodes = false,
-		-- 			desc = "Accept Copilot completion",
-		-- 		})
-		-- 		vim.keymap.set("i", "<C-g>j", "<Plug>(copilot-previous)")
-		-- 		vim.keymap.set("i", "<C-g>k", "<Plug>(copilot-next)")
+		-- 		require("airon").setup({})
+		-- 		vim.keymap.set("n", "<Leader>r", "<cmd>lua require('lazy.core.loader').reload('airon.nvim')<CR>")
 		-- 	end,
 		-- },
 
-		-- Better GitHub Copilot plugin
-		-- https://github.com/zbirenbaum/copilot.lua
-		-- Run `:Copilot auth` to authenticate
+		-- Predictive AI Completion Plugin: https://github.com/monkoose/neocodeium
+		-- Run `:NeoCodeium auth` to authenticate
+		-- Register an account at https://windsurf.com/
 		{
-			"zbirenbaum/copilot.lua",
+			"monkoose/neocodeium",
+			event = "VeryLazy",
 			config = function()
-				require("copilot").setup({
+				local neocodeium = require("neocodeium")
+				neocodeium.setup({
+					-- If `false`, then would not start windsurf server (disabled state)
+					-- You can manually enable it at runtime with `:NeoCodeium enable`
+					enabled = true,
+					-- Set to `false` to disable showing the number of suggestions label in the line number column
+					show_label = true,
+					-- Set to `true` to enable suggestions debounce
+					debounce = false,
+					-- Maximum number of lines parsed from loaded buffers (current buffer always fully parsed)
+					-- Set to `0` to disable parsing non-current buffers (may lower suggestion quality)
+					-- Set it to `-1` to parse all lines
+					max_lines = 10000,
+					-- Set to `true` to disable some non-important messages, like "NeoCodeium: server started..."
+					silent = false,
+					-- Set to `false` to enable suggestions in special buftypes, like `nofile` etc.
+					disable_in_special_buftypes = true,
+					-- Set `enabled` to `true` to enable single line mode.
+					-- In this mode, multi-line suggestions would collapse into a single line and only
+					-- shows full lines when on the end of the suggested (accepted) line.
+					-- So it is less distracting and works better with other completion plugins.
+					single_line = {
+						enabled = false,
+						label = "...", -- Label indicating that there is multi-line suggestion.
+					},
+					-- Set to `false` to disable suggestions in buffers with specific filetypes
+					-- You can still enable disabled by this option buffer with `:NeoCodeium enable_buffer`
 					filetypes = {
-						["*"] = true,
+						help = false,
+						gitcommit = false,
+						gitrebase = false,
+						["."] = false,
 					},
-					suggestion = {
-						enabled = true,
-						auto_trigger = true,
-						hide_during_completion = false,
-						debounce = 75,
-						trigger_on_accept = true,
-						keymap = {
-							accept = "<C-l>",
-							accept_word = "<C-w>",
-							accept_line = nil,
-							next = "<C-g>j",
-							prev = "<C-g>k",
-							dismiss = "<C-q>",
-						},
-					},
-					panel = {
-						enabled = true,
-						auto_refresh = true,
-						keymap = {
-							jump_next = "<C-j>",
-							jump_prev = "<C-k>",
-							accept = "<CR>",
-							refresh = "gr",
-							open = nil,
-						},
-						layout = {
-							position = "right", -- | top | left | right | bottom |
-							ratio = 0.3,
-						},
-					},
+					-- List of directories and files to detect workspace root directory for Windsurf Chat
+					root_dir = { ".git", "package.json" },
 				})
-
-				vim.keymap.set("n", "<Leader>p", "<cmd>lua require('copilot.panel').toggle()<CR>")
+				vim.keymap.set("i", "<C-l>", neocodeium.accept)
+				vim.keymap.set("i", "<C-w>", neocodeium.accept_word)
+				vim.keymap.set("i", "<C-g>j", function()
+					neocodeium.cycle(1)
+				end)
+				vim.keymap.set("i", "<C-g>k", function()
+					neocodeium.cycle(-1)
+				end)
 			end,
 		},
 
@@ -157,8 +157,8 @@ require("lazy").setup({
 		-- Forked to https://github.com/haniker-dev/magenta.nvim
 		-- Keymaps: https://github.com/dlants/magenta.nvim/tree/main?tab=readme-ov-file#keymaps
 		{
-			"haniker-dev/magenta.nvim",
-			dev = true,
+			"dlants/magenta.nvim",
+			dev = false,
 			lazy = false, -- you could also bind to <leader>mt
 			build = "npm install --frozen-lockfile",
 			config = function()
@@ -171,10 +171,14 @@ require("lazy").setup({
 							apiKeyEnvVar = "OPENAI_API_KEY",
 						},
 						{
-							name = "claude-sonnet-3.7",
+							name = "claude-sonnet-4",
 							provider = "anthropic",
-							model = "claude-3-7-sonnet-latest",
+							model = "claude-sonnet-4-20250514",
 							apiKeyEnvVar = "ANTHROPIC_API_KEY",
+							thinking = {
+								enabled = true,
+								budgetTokens = 8192,
+							},
 						},
 					},
 					sidebarPosition = "right",
@@ -260,13 +264,17 @@ require("lazy").setup({
 		-- Syntax Highlight
 		-- https://github.com/nvim-treesitter/nvim-treesitter
 		-- brew install tree-sitter
+		-- brew install tree-sitter-cli
 		{
 			"nvim-treesitter/nvim-treesitter",
+			branch = "master",
+			lazy = false,
 			build = ":TSUpdate",
 			config = function()
 				---@diagnostic disable-next-line: missing-fields
 				require("nvim-treesitter.configs").setup({
 					-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
+					modules = {},
 					ensure_installed = {
 						"bash",
 						"yaml",
@@ -277,8 +285,11 @@ require("lazy").setup({
 						"html",
 						"typescript",
 						"purescript",
+						"terraform",
 					},
 					sync_install = true,
+					auto_install = true,
+					ignore_install = { "all" },
 					highlight = {
 						enable = true,
 						additional_vim_regex_highlighting = false,
@@ -391,8 +402,7 @@ require("lazy").setup({
 				"FabijanZulj/blame.nvim",
 				lazy = false,
 				config = function()
-					---@diagnostic disable-next-line: missing-fields
-					require("blame").setup({})
+					-- require("blame").setup({})
 					vim.keymap.set("n", "zb", "<cmd>BlameToggle<CR>", { silent = true })
 				end,
 			},
@@ -516,8 +526,7 @@ require("lazy").setup({
 
 				-- See other keymaps of LuaSnip in nvim-cmp
 				vim.keymap.set({ "i" }, "<C-h>", function()
-					---@diagnostic disable-next-line: missing-parameter
-					require("luasnip").expand()
+					require("luasnip").expand({})
 				end, { silent = true })
 			end,
 		},
@@ -553,8 +562,7 @@ require("lazy").setup({
 						["<CR>"] = cmp.mapping(function(fallback)
 							if cmp.visible() then
 								if luasnip.expandable() then
-									---@diagnostic disable-next-line: missing-parameter
-									luasnip.expand()
+									luasnip.expand({})
 								else
 									cmp.confirm({
 										select = true,
@@ -618,6 +626,7 @@ require("lazy").setup({
 					json = { "prettier", "prettierd" },
 					jsonc = { "prettier", "prettierd" },
 					xml = { "xmllint" },
+					terraform = { "terraform_fmt" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
@@ -626,13 +635,48 @@ require("lazy").setup({
 			},
 		},
 
+		-- Allows renaming of files to trigger LSP
+		-- https://github.com/antosha417/nvim-lsp-file-operations
+		{
+			"antosha417/nvim-lsp-file-operations",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-neo-tree/neo-tree.nvim", -- neo-tree must load before this plugin
+			},
+			config = function()
+				require("lsp-file-operations").setup({
+					-- used to see debug logs in file `vim.fn.stdpath("cache") .. lsp-file-operations.log`
+					debug = false,
+					-- select which file operations to enable
+					operations = {
+						willRenameFiles = true,
+						didRenameFiles = true,
+						willCreateFiles = true,
+						didCreateFiles = true,
+						willDeleteFiles = true,
+						didDeleteFiles = true,
+					},
+					-- how long to wait (in milliseconds) for file rename information before cancelling
+					timeout_ms = 10000,
+				})
+			end,
+		},
+
 		-- LSP Config Plugin
 		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 		{
 			"neovim/nvim-lspconfig",
+			dependencies = {
+				"antosha417/nvim-lsp-file-operations",
+				"hrsh7th/cmp-nvim-lsp",
+			},
 			config = function()
-				local lspconfig = require("lspconfig")
-				local capabilities = require("cmp_nvim_lsp").default_capabilities()
+				local capabilities = vim.tbl_deep_extend(
+					"force",
+					vim.lsp.protocol.make_client_capabilities(),
+					require("lsp-file-operations").default_capabilities(),
+					require("cmp_nvim_lsp").default_capabilities()
+				)
 
 				-- TypeScript LSP
 				-- We are using pmizio/typescript-tools.nvim plugin
@@ -640,11 +684,18 @@ require("lazy").setup({
 
 				-- Eslint LSP
 				-- npm i -g vscode-langservers-extracted
-				lspconfig.eslint.setup({})
+				vim.lsp.config("eslint", {
+					root_dir = function(_, on_dir)
+						-- A hack to workaround the root_dir issue where the plugin cannot detect the root directory correctly
+						-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/eslint.lua#L89
+						on_dir(vim.fn.getcwd())
+					end,
+				})
+				vim.lsp.enable("eslint")
 
 				-- Purescript LSP
 				-- npm i -g purescript-language-server purs-tidy
-				lspconfig.purescriptls.setup({
+				vim.lsp.config("purescriptls", {
 					-- https://github.com/nwolverson/purescript-language-server?tab=readme-ov-file#neovims-built-in-language-server--nvim-lspconfig
 					settings = {
 						capabilities = capabilities,
@@ -657,10 +708,11 @@ require("lazy").setup({
 						debounce_text_changes = 150,
 					},
 				})
+				vim.lsp.enable("purescriptls")
 
 				-- Lua LSP
 				-- brew install lua-language-server
-				lspconfig.lua_ls.setup({
+				vim.lsp.config("lua_ls", {
 					capabilities = capabilities,
 					settings = {
 						Lua = {
@@ -670,6 +722,15 @@ require("lazy").setup({
 						},
 					},
 				})
+				vim.lsp.enable("lua_ls")
+
+				-- Terraform LSP
+				-- brew install hashicorp/tap/terraform-ls
+				vim.lsp.config("terraformls", {
+					capabilities = capabilities,
+					filetypes = { "terraform", "terraform-vars", "tf" },
+				})
+				vim.lsp.enable("terraformls")
 			end,
 		},
 
@@ -839,15 +900,6 @@ require("lazy").setup({
 					},
 				})
 				vim.keymap.set("n", "<leader>g", "<cmd>Gitui<CR>", { silent = true })
-			end,
-		},
-		{
-			"haniker-dev/airon.nvim",
-			dev = true,
-			lazy = false,
-			config = function()
-				require("airon").setup({})
-				vim.keymap.set("n", "<Leader>r", "<cmd>lua require('lazy.core.loader').reload('airon.nvim')<CR>")
 			end,
 		},
 	},

@@ -1,0 +1,7 @@
+name: devops
+root: ~/Workspace/devops
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all
