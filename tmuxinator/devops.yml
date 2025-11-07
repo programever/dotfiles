@@ -5,3 +5,4 @@ pre_window: nvm use
 windows:
   - editor: nvim
   - bash: git fetch --all
+  - bts-staging: cd Manifest/PopularSG/BackToSchool/staging

@@ -5,6 +5,9 @@ cp -r ~/Dropbox/Documents/Migrating/ssh/* ~/.ssh
 mkdir ~/.aws
 cp -r ~/Dropbox/Documents/Migrating/aws/* ~/.aws
 
+mkdir ~/Workspace/dotfiles/Note
+ln -s ~/Dropbox/Note/* ~/Workspace/dotfiles/Note
+
 cp ~/Dropbox/Documents/Migrating/zsh_secrets ~/.zsh_secrets
 
 mkdir -p ~/.config/nvim/lua/alpha
@@ -28,9 +31,15 @@ ln -s  ~/Workspace/dotfiles/init.lua ~/.config/nvim/init.lua
 - Install Xcode
 - Install brew
 - Install nvm + latest node 20
-- Install `brew install stylemistake/formulae/runner tmuxinator tmux neovim python3 gh font-fira-code-nerd-font fzf fd bat ripgrep git-delta tree-sitter tree-sitter-cli stylua lua-language-server gitui ranger hashicorp/tap/terraform`
+- Install `brew install android-platform-tools stylemistake/formulae/runner tmuxinator tmux neovim python3 gh font-fira-code-nerd-font fzf fd bat ripgrep git-delta tree-sitter tree-sitter-cli stylua lua-language-server gitui ranger hashicorp/tap/terraform`
 - Install `brew tap homebrew/cask-fonts hashicorp/tap`
 - Install `npm install -g neovim spago @fsouza/prettierd typescript typescript-language-server purescript-language-server purs-tidy vscode-langservers-extracted`
+
+# 1Password
+brew install --cask 1password-cli
+- Open the 1Password desktop app.
+- Go to Settings (⌘ ,) → Developer.
+- Turn on "Integrate with 1Password CLI".
 
 # python3
 cd ~/Workspace/dotfiles

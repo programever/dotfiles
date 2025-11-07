@@ -33,7 +33,7 @@ autoload -U compinit && compinit
 # zsh-syntax-highlighting must be the last!
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-# zsh appy antige
+# zsh apply antige
 antigen apply
 
 # Brew

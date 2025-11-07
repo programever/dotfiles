@@ -1,8 +1,10 @@
-name: papa-admin
-root: ~/Workspace/papa/admin
+name: papa
+root: ~/Workspace/papa1
 pre_window: nvm use
 
 windows:
   - editor: nvim
   - bash1: git fetch --all && git status
   - bash2: echo 
+  - server: echo 
+  - mobile: echo 
