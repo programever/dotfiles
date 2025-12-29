@@ -7,7 +7,7 @@ task_default() {
 }
 
 task_start:work() {
-  projects=("watch" "papa" "toppan")
+  projects=("watch" "apcs")
 
   for project in "${projects[@]}"; do
     echo "Starting tmux session for $project..."

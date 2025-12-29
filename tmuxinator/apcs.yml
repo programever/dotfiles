@@ -1,0 +1,9 @@
+name: apcs
+root: ~/Workspace/toppan/apcs
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server1: print -S "npm run "
+  - server2: print -S "npm run "

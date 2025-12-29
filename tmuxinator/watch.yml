@@ -4,8 +4,7 @@ root: ~/Workspace
 windows:
   - main:
       panes:
-        - print -S "cd toppan && npm run start"
-#        - print -S "cd uob && npm run start"
-#        - print -S "cd nvim/airon.nvim && npm run tsc:watch"
+        - print -S "cd toppan/apcs"
+        - print -S "cd toppan/apcs"
       layout: main-vertical
   - bash: echo 

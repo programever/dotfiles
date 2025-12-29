@@ -30,9 +30,9 @@ ln -s  ~/Workspace/dotfiles/init.lua ~/.config/nvim/init.lua
 # Presetup
 - Install Xcode
 - Install brew
-- Install nvm + latest node 20
-- Install `brew install android-platform-tools stylemistake/formulae/runner tmuxinator tmux neovim python3 gh font-fira-code-nerd-font fzf fd bat ripgrep git-delta tree-sitter tree-sitter-cli stylua lua-language-server gitui ranger hashicorp/tap/terraform`
-- Install `brew tap homebrew/cask-fonts hashicorp/tap`
+- Install nvm + latest node 24
+- Install `brew install android-platform-tools stylemistake/formulae/runner tmuxinator tmux neovim python3 gh font-fira-code-nerd-font fzf fd bat ripgrep git-delta tree-sitter tree-sitter-cli stylua lua-language-server gitui ranger hashicorp/tap/terraform antigen`
+- Install `brew tap hashicorp/tap`
 - Install `npm install -g neovim spago @fsouza/prettierd typescript typescript-language-server purescript-language-server purs-tidy vscode-langservers-extracted`
 
 # 1Password

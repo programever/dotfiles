@@ -1,5 +1,5 @@
 name: papa
-root: ~/Workspace/papa1
+root: ~/Workspace/papa-new
 pre_window: nvm use
 
 windows:
