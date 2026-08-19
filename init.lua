@@ -69,6 +69,13 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = "FileTypeOverrides",
 })
 
+-- elm-format uses 4 spaces
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "elm",
+	command = "setlocal tabstop=4 shiftwidth=4 expandtab",
+	group = "FileTypeOverrides",
+})
+
 -- Leader Mappings
 vim.g.mapleader = " "
 vim.keymap.set("n", "<Leader>s", ":w<CR>")
@@ -306,6 +313,7 @@ require("lazy").setup({
 						"purescript",
 						"terraform",
 						"rust",
+						"elm",
 					},
 					sync_install = true,
 					auto_install = true,
@@ -648,6 +656,7 @@ require("lazy").setup({
 					xml = { "xmllint" },
 					terraform = { "terraform_fmt" },
 					rust = { "rustfmt" },
+					elm = { "elm_format" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
@@ -769,6 +778,21 @@ require("lazy").setup({
 					},
 				})
 				vim.lsp.enable("rust_analyzer")
+
+				-- Elm LSP
+				-- npm i -g elm elm-test elm-format @elm-tooling/elm-language-server
+				vim.lsp.config("elmls", {
+					capabilities = capabilities,
+					settings = {
+						elmLS = {
+							elmReviewDiagnostics = "warning", -- "off" | "warning" | "error"
+							disableElmLSDiagnostics = false,
+							skipInstallPackageConfirmation = false,
+							onlyUpdateDiagnosticsOnSave = false,
+						},
+					},
+				})
+				vim.lsp.enable("elmls")
 			end,
 		},
 

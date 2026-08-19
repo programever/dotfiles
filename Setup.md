@@ -35,7 +35,7 @@ ln -s  ~/Workspace/dotfiles/init.lua ~/.config/nvim/init.lua
 - Install `rustup component add rust-analyzer`
 - Install `brew install android-platform-tools stylemistake/formulae/runner tmuxinator tmux neovim python3 gh font-fira-code-nerd-font fzf fd bat ripgrep git-delta tree-sitter tree-sitter-cli stylua lua-language-server gitui ranger hashicorp/tap/terraform antigen`
 - Install `brew tap hashicorp/tap`
-- Install `npm install -g neovim spago @fsouza/prettierd typescript typescript-language-server purescript-language-server purs-tidy vscode-langservers-extracted`
+- Install `npm install -g neovim spago @fsouza/prettierd typescript typescript-language-server purescript-language-server purs-tidy vscode-langservers-extracted elm elm-test elm-format @elm-tooling/elm-language-server`
 
 # 1Password
 brew install --cask 1password-cli
