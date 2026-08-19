@@ -79,6 +79,14 @@ vim.keymap.set("n", "<Leader>l", ":vsp<CR>")
 vim.keymap.set("n", "<Leader>j", ":sp<CR>")
 vim.keymap.set("n", "<Leader>w", ":set wrap!<CR>")
 
+-- Restart LSP
+vim.keymap.set(
+	"n",
+	"<Leader>rl",
+	"<Cmd>LspRestart<CR>",
+	{ silent = true, noremap = true, desc = "Restart the LSP when it hangs" }
+)
+
 --------------------
 --- The plugins ----
 --------------------
@@ -171,12 +179,22 @@ require("lazy").setup({
 						-- 	apiKeyEnvVar = "OPENAI_API_KEY",
 						-- },
 						{
-							name = "claude-sonnet-4",
+							name = "slow-model",
 							provider = "anthropic",
-							model = "claude-sonnet-4-20250514",
+							model = "claude-sonnet-4-6",
 							apiKeyEnvVar = "ANTHROPIC_API_KEY",
 							thinking = {
 								enabled = true,
+								budgetTokens = 8192,
+							},
+						},
+						{
+							name = "fast-model",
+							provider = "anthropic",
+							model = "claude-haiku-3-5",
+							apiKeyEnvVar = "ANTHROPIC_API_KEY",
+							thinking = {
+								enabled = false,
 								budgetTokens = 8192,
 							},
 						},
@@ -283,9 +301,11 @@ require("lazy").setup({
 						"markdown",
 						"markdown_inline",
 						"html",
+						"javascript",
 						"typescript",
 						"purescript",
 						"terraform",
+						"rust",
 					},
 					sync_install = true,
 					auto_install = true,
@@ -627,6 +647,7 @@ require("lazy").setup({
 					jsonc = { "prettier", "prettierd" },
 					xml = { "xmllint" },
 					terraform = { "terraform_fmt" },
+					rust = { "rustfmt" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
@@ -731,6 +752,23 @@ require("lazy").setup({
 					filetypes = { "terraform", "terraform-vars", "tf" },
 				})
 				vim.lsp.enable("terraformls")
+
+				-- Rust LSP
+				-- Install rust-analyzer: rustup component add rust-analyzer
+				vim.lsp.config("rust_analyzer", {
+					capabilities = capabilities,
+					settings = {
+						["rust-analyzer"] = {
+							cargo = {
+								allFeatures = true,
+							},
+							check = {
+								command = "clippy",
+							},
+						},
+					},
+				})
+				vim.lsp.enable("rust_analyzer")
 			end,
 		},
 

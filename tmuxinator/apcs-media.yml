@@ -1,0 +1,9 @@
+name: apcs-media
+root: ~/Workspace/toppan/media
+pre_window: nvm use
+
+windows:
+  - editor: nvim
+  - bash: git fetch --all && git status
+  - server: print -S "just dev"
+  - rtsp: print -S "just rtsp"
