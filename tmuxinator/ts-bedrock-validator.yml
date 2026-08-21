@@ -1,9 +1,8 @@
-name: uob
-root: ~/Workspace/uob
+name: ts-bedrock-validator
+root: ~/Workspace/ts-bedrock-validator
 pre_window: nvm use
 
 windows:
   - editor: nvim
   - bash: git fetch --all && git status
-  - database: print -S "npm run external:start"
   - server: print -S "npm run "

@@ -1,8 +1,0 @@
-name: dunia
-root: ~/Workspace/dunia
-pre_window: nvm use
-
-windows:
-  - editor: nvim
-  - bash: git fetch --all && git status
-  - api: print -S "npm start"
